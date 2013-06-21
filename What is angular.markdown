@@ -1,87 +1,127 @@
-In this tutorial we'll learn what is AngularJS and it's main features.
-You can run all examples in repository without any prerequesitions. Just run appropriate .html file in your browser and it's source in your text editor. All example numerated for ease of use.
-What is AngularJS
+How to install the latest node.js on Ubuntu?
+Posted on October 31, 2012
+  15
+Node.js is an event-based and non-blocking I/O framework — built on Chrome’s JavaScript engine. Its goal is to provide an easy way to build scalable network programs.
 
-**AngularJS is a JavaScript framework based on MVC design pattern. This framework was made for developing dynamic web-applications. AngularJS has some important differences from others JS frameworks: form validation, deep linking, data binding, no DOM manipulation in the controllers, declarative style. Before we look at these features more closely let's see basic usage of AngularJS first.**
+In most linux distributions Node.js is available in a repository which can be accessed via a package manager such as apt-get or aptitude.
 
-AngularJS Components
+However in the repository of the brand new Ubuntu 12.10 (Quantal Quetzal) the nodejs package has the version number 0.6.19 while the current version is 0.8.14 as of this writing. Unfortunately many nodes — that’s how node.js applications are called — are constantly under development and often depend on a newer version.
 
-To understand what is AngularJS and how to work with it we'll examine it's components.
-AngularJC is a framework based on MVC pattern. This pattern consists of three parts: Model, View, Controller. Model is the representation of all data in the application, View is the way how data is presented to the user, and the third part - Controller establishes interaction between user (View) and data (Model). Now we can learn specifics of MVC design pattern in AngularJC.
-View
-The view is what the user sees. View in AngularJS is an HTML template with some declarations. You can declare in the template some data from the model in the specific place or bind some HTML tag with the controller. Let's see example ("1. Hello World" in repository)):
-<div ng-controller="HelloCtrl">
-    Hello {{name}}!
-    <button ng-click="action()">
-        OK
-    </button>
-</div>
+If you are trying to install a node with the node package manager but providing an old node environment, you most probably expierence a similar error message to the one below.
 
-**In the attribute of div we declare that this div is binded to our controller HelloCtrl. Text in the double curly braces is the data of our Model. And attribute of button is declaration of calling method action() when click occurs.
-In AngularJS templates you declare placeholders for data from your models and declare what tags will be binded to specific events.
-Controller
-Controller in AngularJS is a class. Controllers construct models and reacts to the actions when some event occurs. That's how you can implement** HelloCtrl:
+npm ERR! error installing ws@0.4.22
+npm WARN This failure might be due to the use of legacy binary "node" 
+npm WARN For further explanations, please read
+npm WARN /usr/share/doc/nodejs/README.Debian
+npm WARN 
 
-*    function HelloCtrl($scope) {
-    $scope.action = function() {
-    $scope.name = 'World';
-    }
-    $scope.name = '';
-    }*
+npm ERR! ws@0.4.22 install: `node install.js`
+npm ERR! `sh "-c" "node install.js"` failed with 127
+npm ERR! 
+npm ERR! Failed at the ws@0.4.22 install script.
+npm ERR! This is most likely a problem with the ws package,
+npm ERR! not with npm itself.
+npm ERR! Tell the author that this fails on your system:
+npm ERR!     node install.js
+npm ERR! You can get their info via:
+npm ERR!     npm owner ls ws
+npm ERR! There is likely additional logging output above.
+npm ERR! 
+npm ERR! System Linux 3.5.0-17-generic
+npm ERR! command "/usr/bin/nodejs" "/usr/bin/npm" "install" "ws"
+npm ERR! cwd /home/slopjong/
+npm ERR! node -v v0.6.19
+npm ERR! npm -v 1.1.4
+npm ERR! code ELIFECYCLE
+npm ERR! message ws@0.4.22 install: `node install.js`
+npm ERR! message `sh "-c" "node install.js"` failed with 127
+npm ERR! errno {}
+Update (March 15th, 2013)
 
-**When you create controller you must send argument $scope. $ sign is AngularJS prefix for it's ojbects. $scope is an object which binds the Model with the View. Defining $scope properties you can create callback functions and Model variables. in this example we defined action callback function which will be called when user clicks button 'Hi'. Also we created variable 'name'.
-So, when you load 'Hello World' example, AngularJS creates controller and initializes variable 'name' to empty string. When you click 'Hi' button, action function is called and 'name' property is changed to 'World'.
-Model
-In AngularJS you create Model data through $scope variable like we did: $scope.name = '';
-And to show this data in the View you use curly braces in template: {{name}} - notice, you don't need to point $scope, but data which you present must be in scope of certain controller. Let's see example ("2. Scopes" in repository):**
+At the moment the repository has version 0.8.14 included while the latest version is version 0.10. This tutorial has been updated and successfully tested.
 
-<div ng-controller="FirstCtrl">
+As maintaining old tutorials and old blog posts costs time, feel free to donate me a virtual beer. Drop me a message here and tell me what your favourite donation channel is (like flattr whehere I haven’t an account yet).
 
-    This is the scope of the {{name}}!
-</div>
-<div ng-controller="SecondCtrl">
-    This is the scope of the {{name}}!
-</div>
+Preparation
 
-And controllers:
-function FirstCtrl($scope) {
-  $scope.name = 'First Controller';
-}
-function SecondCtrl($scope) {
-  $scope.name = 'Second Controller';
-}
-We just declared variables with the same name. When you run this page in your browser you'll see:
-This is the scope of the First Controller!
-This is the scope of the Second Controller!
-Now as we learned basics of MVC design pattern in AngularJS, let's also learn about bootstrapping it to HTML page.
+The nodejs package depends on a couple of other packages, be sure that you have the repository component universe enabled.
 
-Bootstrapping AngularJS
-To bootstrap AngularJS to your application you need to add AngularJS script. You can find it here: http://angularjs.org. Just put that script to your JS folder and make reference in your HTML page:
-<head>
-  <script src="scripts/angular.min.js"></script>
-</head>
-Also you can reference to the angulag script on it's server like I do in this tutorial: <script src="http://code.angularjs.org/1.0.5/angular.min.js"></script>
-OK. Now you need to say AngularJS compiler where in your document is AngularJS code. You do this with attribute ng-app. You can place this attribute in any tag of your document, so AngularJS will work only in that part. Like this:
-<div ng-app>
-<!-- Part of the page where AngularJS works -->
-</div>
-Also you can place ng-app in html tag, so AngularJS will work in whole document:
-<html ng-app>
-<!-- Now you can declare here AngularJS controllers and put placeholders for Model data -->
-</html>
-Data binding
-And for the end part let's examine one more example - "Data Biding" Which helps us see one very important feature of AngularJS. HTML code:
-<div ng-controller="DataBindingCtrl">
-  Hello {{name}}!<br/>
-  <input ng-model="name">
-</div>
-We put placeholder for our Model variable 'name' and bind input field with the same model variable. JavaScript code:
-function DataBindingCtrl($scope) {
-  $scope.name = '';
-}
-When page is loaded variable name is an empty string. But when we type something in the text field the sting above is automatically updates. But look at our code!!! There is no DOM manipulation in our code, there is no callbacks in controller. We just declare controller in template, put placeholder and declare that input field is binded to Model variable 'name'. So, we can separate out some features of AngularJS:
-1.	Declarative style. In templates we declare some stuff - no actual code like calling functions.
-2.	Data binding. When something happens with data in Model it is immediately represented in View and vice versa.
-3.	No DOM manipulation in Controller. That means no more innerHTML code on Controller side.
-So, that's all for today.
-You can find more info about AngularJS here: Tutorial, Developer's guide
+# in /etc/apt/sources.list
+deb http://archive.ubuntu.com/ubuntu quantal main restricted universe
+deb http://security.ubuntu.com/ubuntu quantal-security main restricted universe
+deb http://archive.ubuntu.com/ubuntu quantal-updates main restricted universe
+After enabling it run sudo apt-get update.
+
+Installation steps
+
+In order to get a more recent nodejs version you need to add a personal package archive (ppa) and update the package index files. To do so open Terminal and execute the following commands.
+
+sudo apt-get install python-software-properties
+sudo add-apt-repository ppa:chris-lea/node.js
+sudo apt-get update
+sudo apt-get install nodejs
+Pay attention to the second line, if you are trying to execute apt-apt-repository you won’t have luck.
+
+Install the node package manager
+
+Update (March 15th, 2013)
+You no longer need to install npm separately as nodejs includes it now.
+
+To manage your nodes it’s recommended to install the node package manager (npm) too.
+
+sudo apt-get install npm
+Who prefers to compile npm from its sources will find this script very useful.
+
+Update (March 20th, 2013)
+It looks like somebody forgot to pay his bill. The link to the script is currently broken.
+
+Update (April 15th, 2013, 19:50 UTC+2)
+A guy from Israel has grabbed the domain which has expired three and a half hours ago.
+
+Read related articles: javascript Node.js Ubuntu
+24 COMMENTS
+
+Rufus
+Posted November 19, 2012 at 9:06 PM
+Thanks!!! this worked for me.
+
+Just pasting my old error so others will find this solution too.
+
+# ws@0.4.22 install /home/......./ttys/node_modules/tty.js/node_modules/socket.io/node_modules/socket.io-client/node_modules/ws
+# node install.js
+
+sh: 1: node: not found
+npm ERR! error installing ws@0.4.22
+npm WARN This failure might be due to the use of legacy binary "node"
+npm WARN For further explanations, please read
+npm WARN /usr/share/doc/nodejs/README.Debian
+npm WARN
+npm ERR! error installing socket.io-client@0.9.10
+npm ERR! error installing socket.io@0.9.10
+npm ERR! error installing tty.js@0.2.8
+
+npm ERR! ws@0.4.22 install: `node install.js`
+npm ERR! `sh "-c" "node install.js"` failed with 127
+npm ERR!
+npm ERR! Failed at the ws@0.4.22 install script.
+npm ERR! This is most likely a problem with the ws package,
+npm ERR! not with npm itself.
+npm ERR! Tell the author that this fails on your system:
+npm ERR!     node install.js
+npm ERR! You can get their info via:
+npm ERR!     npm owner ls ws
+npm ERR! There is likely additional logging output above.
+npm ERR!
+npm ERR! System Linux 3.5.0-18-generic
+npm ERR! command "/usr/bin/nodejs" "/usr/bin/npm" "install" "tty.js"
+npm ERR! cwd /home/wouterdb/install/ttys
+npm ERR! node -v v0.6.19
+npm ERR! npm -v 1.1.4
+npm ERR! code ELIFECYCLE
+npm ERR! message ws@0.4.22 install: `node install.js`
+npm ERR! message `sh "-c" "node install.js"` failed with 127
+npm ERR! errno {}
+npm ERR!
+npm ERR! Additional logging details can be found in:
+npm ERR!     /home/wouterdb/install/ttys/npm-debug.log
+npm not ok
