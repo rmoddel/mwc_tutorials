@@ -1,91 +1,221 @@
-How to use Help in vim
+VIM Editor Commands
 
-If you are stuck at any place and you need some help you can get it easily by using the following help command, but remember if you want to use this command, first of all get out from your current mode to the normal mode, by pressing ESC then write the following command.  
+Vim is an editor to create or edit a text file.
 
-:help 
+There are two modes in vim. One is the command mode and another is the insert mode.
 
-:h
+In the command mode, user can move around the file, delete text, etc.
 
-Its actually help.txt file which will open with many help topics and you will find the resolution of your problem in it. You can move your cursor down by pressing the down arrow key to check all the help topics. 
+In the insert mode, user can insert text.
 
-How to search words in help file:
-If you want to search something in help file of vim, use the following command for it. We will search “quick” in following command, after writing the following command we need to press “Ctrl+D” to run the following search command. (Remember: if you will press Enter after writing the following command it will not be executed).  
-:help quick 
+Changing mode from one to another
+
+From command mode to insert mode	 type a/A/i/I/o/O ( see details below)
+
+From insert mode to command mode	 type Esc (escape key)
+
+Some useful commands for VIM
+
+Text Entry Commands (Used to start text entry)
+
+a Append text following current cursor position
+
+A Append text to the end of current line
+
+i Insert text before the current cursor position
+
+I Insert text at the beginning of the cursor line
+
+o Open up a new line following the current line and add text there
+
+O Open up a new line in front of the current line and add text there
+
+The following commands are used only in the commands mode.
+
+Cursor Movement Commands
+
+h Moves the cursor one character to the left
+
+l Moves the cursor one character to the right
+
+k Moves the cursor up one line
+
+j Moves the cursor down one line
+
+nG or :n Cursor goes to the specified (n) line
+
+(ex. 10G goes to line 10)
+
+^F (CTRl F) Forward screenful
+
+^B Backward screenful
+
+^f One page forward
+
+^b One page backward
+
+^U Up half screenful
+
+^D Down half screenful
+
+$ Move cursor to the end of current line
+
+0 (zero) Move cursor to the beginning of current line
+
+w Forward one word
+
+b Backward one word
+
+Exit Commands
+
+:wq Write file to disk and quit the editor
+
+:q! Quit (no warning)
+
+:q Quit (a warning is printed if a modified file has not been saved)
+
+ZZ Save workspace and quit the editor (same as :wq)
+
+: 10,25 w temp
+
+write lines 10 through 25 into file named temp. Of course, other line
+
+numbers can be used. (Use :f to find out the line numbers you want.
 
  
 
+Text Deletion Commands
 
-Search Results of our search command. 
+x Delete character
+
+dw Delete word from cursor on
+
+db Delete word backward
+
+dd Delete line
+
+d$ Delete to end of line
+
+d^ (d caret, not CTRL d) Delete to beginning of line
+
+Yank (has most of the options of delete)-- VI's copy commmand
+
+yy yank current line
+
+y$ yank to end of current line from cursor
+
+yw yank from cursor to end of current word
+
+5yy yank, for example, 5 lines
+
+Paste (used after delete or yank to recover lines.)
+
+p paste below cursor
+
+P paste above cursor
+
+"2p paste from buffer 2 (there are 9)
+
+u Undo last change
+
+U Restore line
+
+J Join next line down to the end of the current line
+
+File Manipulation Commands
+
+:w Write workspace to original file
+
+:w file Write workspace to named file
+
+:e file Start editing a new file
+
+:r file Read contents of a file to the workspace
+
+To create a page break, while in the insert mode, press the CTRL key
+
+And l. ^L will appear in your text and will cause the printer to start
+
+A new page.
 
  
 
-When you see your search results, use “Tab” key to switch between the topics in your search results and press Enter to open any topic related to your query. 
  
-Some Basic Commands to use in Vim
-We are running vim on our Ubuntu server, so in terminal mode we need to work with commands. Following are some basic but very useful commands to start working on vim. 
-Command	Purpose ( What does it do)
 
-Vim	To start vim
-i	To go to insert mode
+Other Useful Commands
 
-Esc	To exit from any mode you are in, or go to command mode
+Most commands can be repeated n times by typing a number, n, before
 
-:q	To quit the file or to quit vim
+the command. For example 10dd means delete 10 lines.
 
-:q!	To quit without saving file
+. Repeat last command
 
-:help 	To open the help file
+cw Change current word to a new word
 
-:help keyword	to search ‘keyword’ from help file (after writing keyword press Ctrl+D to execute the command, if you press Enter it will not be executed 
+r Replace one character at the cursor position
 
-:w	Save changes
+R Begin overstrike or replace mode – use ESC key to exit
 
-:wq	Save changes and exit
+:/ pattern Search forward for the pattern
 
-:w filename	To save your text in file ‘filename’
+:? pattern Search backward for the pattern
 
+n (used after either of the 2 search commands above to
 
-If we will use the following commands in insert mode we will have to hold “Alt” key, for example Alt+w or Alt+b.
+continue to find next occurrence of the pattern.
 
-w	To go to the initial character of next word
+:g/pat1/s//pat2/g replace every occurrence of pattern1 (pat1) with
 
-b	To go to the initial character of the previous word
+pat2
 
-e	To go to the last character of next word
+Example :g/tIO/s//Ada.Text_IO/g
 
-0	To go to the start of the line
+This will find and replace tIO by Ada.text_IO everywhere in the file.
 
-$	To go to the end of the line press 
+:g/a/s// /g replace the letter a, by blank
 
-u	Undo
+:g/a/s///g replace a by nothing
 
-Ctrl+r	Rdo
-/search	To search any word in our text, “search” is our keyword which we are searching in this command.
-#	To find the previous occurrence of the word in our text
-*	To find the next occurrence of the word in our text
-*	
-e	To the end of the word in insert mode
+note: Even this command be undone by u
 
-b	To the beginning of the word
  
-0	To the beginning of the line
 
-$	To the end of the line
+Examples
 
-i	Insert before cursor.
+Opening a New File
 
-I	Insert to the start of the current line.
+Step 1	 type	vim filename	(create a file named filename)
 
-a	Append after cursor.
+Step 2	 type	i	 ( switch to insert mode)
 
-A	Append to the end of the current line.
+Step 3	 enter text	 (enter your Ada program)
 
-H	To the first line of the screen.
+Step 4	 hit	Esc key	(switch back to command mode)
 
-M	To the middle line of the screen.
+Step 5	 type	:wq	 (write file and exit vim)
 
-L	To the the last line of the screen.
+ 
 
-Reference: http://www.tuxfiles.org/linuxhelp/vimcheat.html
+Editing the Existing File
 
-![](https://github.com/mywebclass/mwc_tutorials/linux/test.jpg)
+Step 1	 type	vim filename	(edit the existing file named filename)
+
+Step 2	 move around the file using h/j/k/l key or any appropriate command
+
+h Moves the cursor one character to the left
+
+l Moves the cursor one character to the right
+
+k Moves the cursor up one line
+
+j Moves the cursor down one line
+
+nG or :n Cursor goes to the specified (n) line
+
+(ex. 10G goes to line 10)
+
+Step 3	 edit required text (replace or delete or insert)
+
+Step 4	 hit Esc key (exit from insert mode if you insert or replace text)
+
+Step 5	 type	:wq
