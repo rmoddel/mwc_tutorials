@@ -88,3 +88,4 @@ L	To the the last line of the screen.
 
 Reference: http://www.tuxfiles.org/linuxhelp/vimcheat.html
 
+![](https://github.com/mywebclass/mwc_tutorials/blob/master/linux/test.jpg)
