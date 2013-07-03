@@ -1,0 +1,82 @@
+add 
+sudo = super user do
+add group
+ls list all files
+ls
+
+File/folder permissions 
+
+dr = directory
+r = read
+w = write
+e  = execute : list directories and execute program
+
+1)user
+2)group
+3)everyone else
+
+
+Where add harddrive to linux?
+look at ubuntu file server explained
+
+"tab" completes the file name
+
+or previews files after in a file 
+
+up down arrows
+apt-get = application get 
+
+apt-get upgrade = upgrade all software on the server
+sudo apt-get update : list of repositories, update the list of available software
+incase the list of dependencies is not updated on your version of linux
+sft ~ to home directory
+cd ..= back up 1 dir
+cd ./(parent directory) name of directory
+ifconfig ALL network config
+ip postal address 
+:q = quit
+
+
+pwd = the absolute path your in.
+
+absoulte vs relative
+
+mkdir = make directory
+
+cd ~
+cd . relative of current path 
+cd .. 
+
+mv = move folder mv {name of folder} /{location}
+the slash differentiates between changing file location to file name
+mv could also change name of file
+mv {old name of file} {new name}
+* = everything
+touch  = create empty file 
+
+see all users
+sudo vi etc/passwd
+
+rm = remove (delete)
+remove file = rm file.name
+remove directory rm -r directory name
+flag [ r = recursive f = force = don't want warnings]
+cp = copy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+osec = http://o-security.sourceforge.net/
+mmonit = http://mmonit.com/monit/ 
